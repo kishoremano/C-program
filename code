@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+   int i,j,n,a=0, found=0, place;
+   char str[100][100],temp[100], s1[100];// 100 for limit 
+   puts("How many strings u are going to enter?:");
+   scanf("%d",&n);
+
+   puts("\nEnter Strings one by one:");
+   for(i=0;i<=n;i++)
+      gets(str[i]);
+   for(i=0;i<=n;i++)
+      for(j=i+1;j<=n;j++){
+         if(strcmp(str[i],str[j])>0){
+            strcpy(temp,str[i]);
+            strcpy(str[i],str[j]);
+            strcpy(str[j],temp);
+         }
+      }
+   printf("\nOrder of Sorted Strings:");
+   for(i=0;i<=n;i++)
+      puts(str[i]);
+
+printf("\nEnter a item to search:\n");
+scanf("%s", s1);
+for(i=1; i<=n; i++)
+{
+    if(strcmp(s1, str[i]) == 0)
+     {
+        found=1;
+        printf("\nThe item was searched and it was found in row %d\n", i);
+        place=i;
+     }
+}
+if(found==0) 
+printf("\nSearched item is not found:(\n");
+
+printf("\nRemaining items in the list are:\n");
+for(i=0;i<n;i++){
+		if(i==place){
+			for(j=place;j<n;j++){
+				strcpy(str[j],str[j+1]);
+		}	
+	}
+}
+		for(i=0;i<n;i++){
+		printf("%s\n",str[i]);
+	}	
+	printf("\n");	
+	return 0;
+}
